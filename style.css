@@ -1,10 +1,14 @@
+
+/*Begin header styling*/
 .header {
     background-color: red;
     box-sizing: border-box;
     height: 15vh;
     width: 100%;
 }
+/*Close header styling*/
 
+/*Begin main section styling*/
 .main {
     background-color: lightblue;
     box-sizing: border-box;
@@ -16,13 +20,17 @@
     align-items: center;
     align-content: center;
 }
+/*Close main section styling*/
 
+/*Begin player list styling*/
 .player-list {
     height: 80%;
     width: 15%;
     background-color: lightgreen;
 }
+/*Close player list styling*/
 
+/*Begin game board styling*/
 .game-area {
     height: 80%;
     width: 50%;
@@ -41,9 +49,12 @@
     width: 33%;
     border: 2px solid black;
 }
+/*Close game board styling*/
 
+/*Begin stats section styling*/
 .stats {
     height: 80%;
     width: 15%;
     background-color: lightgreen;
 }
+/*Close stats section styling*/
