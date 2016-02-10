@@ -27,10 +27,12 @@
     height: 80%;
     width: 50%;
     background-color: lightgreen;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .game-area .game-cell {
