@@ -27,6 +27,28 @@
     height: 80%;
     width: 15%;
     background-color: lightgreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
+.player-list li {
+    display: flex;
+    flex-direction: row;
+}
+
+.player-turn {
+    width: 20px;
+}
+
+.player-symbol {
+    width: 20px;
+}
+
+.player-name {
+    flex-grow: 1;
 }
 /*Close player list styling*/
 
