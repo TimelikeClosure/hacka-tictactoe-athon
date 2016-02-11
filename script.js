@@ -24,12 +24,46 @@ function inputInterpreter(selector) {
 
 //  Begin logicController
 var logicController = {
-    turnCounter:function(){
-    var counter = 0;
-    counter++;
+    counter: 0,
+    player: 'x',
+    playerArray:[],
+
+    click: function(array){
+        if (clickPosition != null){
+            this.displayLogic();
+        }else{
+            this.turnCounter();
+            this.switchPlayer();
+            array.slice();
+            this.displayLogic();
+        }
+    },
+
+    turnCounter: function() {
+        var countArray = [];
+        this.counter++;//increment turn counter
+        countArray = this.counter;
+        playerArray.push(countArray)
+        },
+
+    switchPlayer: function() {
+        var whosTurn = [];
+        if (player == 'x'){
+            this.player = 'o';
+        }else {
+            this.player = 'x';
+        }
+        whosTurn = this.player;
+        playerArray.push(whosTurn);
+        },
+
+    displayLogic: function(){
+        return playerArray;
     }
 
-}
+
+
+};
 
 
 
