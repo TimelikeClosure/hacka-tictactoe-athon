@@ -236,11 +236,13 @@ var displayController = {
         var $playerList = $('#player_list');
         $playerList.html("");
         for (var i = 0; i < playerList.length; i++) {
-            if (playerList[i][2]) {
+            if (playerList[i][2]) { // to be removed
                 var turn = "-->";
             } else {
                 turn = "";
             }
+
+
             $playerList.append(
                 $("<li>").attr("id", playerList[i][0]).append(
                     $("<div>", {class: "player-turn", text: turn}),
@@ -259,10 +261,12 @@ var displayController = {
         for (var i = 0; i < gameCellList.length; i++) {
             $gameBoard.append(
                 $("<div>", {class: "game-cell", text: gameCellList[i]})
+                //$("<div>", {class: "game-cell", background-image: gameCellList[i]})
             );
         }
 
         //  Get statistics display data
+
 
         //  Display statistics data
 
