@@ -11,19 +11,21 @@
         <link href="style.css" type="text/css" rel="stylesheet"/>
         <script src="https://code.jquery.com/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="script.js"></script>
     </head>
 
     <body>
         <header class="header">Tic Tac Toe</header>
         <main class="main container-fluid">
-            <section id="player" class="player-list">
-                <ol>Player List
-                    <li>
+            <section id="player-list" class="player-list">
+                <ol>
+                    <h2>Player List</h2>
+                    <li id="player1">
                         <div class="player-turn">--></div>
                         <div class="player-symbol">X</div>
                         <div class="player-name">player1</div>
                     </li>
-                    <li>
+                    <li id="player2">
                         <div class="player-turn"></div>
                         <div class="player-symbol">O</div>
                         <div class="player-name">player2</div>
@@ -41,8 +43,13 @@
                 <div class="game-cell">div7</div>
                 <div class="game-cell">div8</div>
             </section>
-            <section id="stats" class="stats">Stats
-                <button id="game-reset">Reset Game</button>
+            <section id="stats" class="stats">
+                <ul>
+                    <h2>Statistics</h2>
+                    <li>
+                        <button id="game-reset">Reset Game</button>
+                    </li>
+                </ul>
             </section>
         </main>
     </body>
