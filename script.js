@@ -28,15 +28,27 @@ inputInterpreter = {
         return Math.floor(Math.sqrt(this.get_grid_count()),1);
     },
     get_row_indexes: function (rowIndex) { // returns indexes in row # rowIndex
-        var elementArray = [];
-        for (var i = rowIndex; i < rowIndex; i += this.get_column_count()) {
-
+        if (rowIndex < 0 || rowIndex >= this.get_row_count()) {
+            return null;
         }
+        var elementArray = [];
+        for (var i = (rowIndex * this.get_column_count()); i < (rowIndex * this.get_column_count()) + this.get_column_count(); i++) {
+            elementArray.push(i);
+        }
+        return elementArray;
     },
     get_column_count: function () { // returns number of columns on game grid
         return this.get_row_count();
     },
     get_column_indexes: function (columnIndex) { // returns indexes in column # columnIndex
+        if (columnIndex < 0 || columnIndex >= this.get_column_count()) {
+            return null;
+        }
+        var elementArray = [];
+        for (var i = columnIndex; i < this.get_grid_count(); i += this.get_column_count()) {
+            elementArray.push(i);
+        }
+        return elementArray;
 
     },
     get_diagonal: function (diagonalIndex) { // returns indexes in diagonal # diagonalIndex (0: backslash, 1: forward slash)
