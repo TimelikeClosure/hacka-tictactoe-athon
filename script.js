@@ -2,14 +2,6 @@ $(document).ready(function(){
     $('#game-area').on('click', '.game-cell', function(){
         cell_click($(this));
     });
-    //  Display test function
-    /*$('#player_list').click(function(){
-        var bob = [
-            [["player2","O",false],["player1","X",true]],
-            ["", "", "X", "O", "X", "", "O", "", ""],
-            ''];
-        displayController(bob);
-    });*/
 });
 
 //  Begin cell_click function
@@ -18,7 +10,7 @@ function cell_click($selector){
     console.log('clickPosition : ', clickPosition);
     var displayObject = logicController.click(clickPosition);
     console.log('displayObject : ', displayObject);
-    displayController(displayObject);
+    displayController.updateGame(displayObject);
 }
 //  Close cell_click function
 
@@ -126,48 +118,51 @@ var logicController = {
 //  Close logicController
 
 //  Begin displayController
-function displayController(displayObject) {
+var displayController = {
 
-    //  Get player-list display data
-    var playerList = displayObject[0];
+    updateGame: function(displayObject) {
+        //  Get player-list display data
+        var playerList = displayObject[0];
 
-    //  Display player-list data
-    var $playerList = $('#player_list');
-    $playerList.html("");
-    for (var i = 0; i < playerList.length; i++) {
-        if (playerList[i][2]) {
-            var turn = "-->";
-        } else {
-            turn = "";
+        //  Display player-list data
+        var $playerList = $('#player_list');
+        $playerList.html("");
+        for (var i = 0; i < playerList.length; i++) {
+            if (playerList[i][2]) {
+                var turn = "-->";
+            } else {
+                turn = "";
+            }
+            $playerList.append(
+                $("<li>").attr("id", playerList[i][0]).append(
+                    $("<div>", {class: "player-turn", text: turn}),
+                    $("<div>", {class: "player-symbol", text: playerList[i][1]}),
+                    $("<div>", {class: "player-name", text: (playerList[i][0] + ":")})
+                )
+            );
         }
-        $playerList.append(
-            $("<li>").attr("id", playerList[i][0]).append(
-                $("<div>",{class: "player-turn", text: turn}),
-                $("<div>",{class: "player-symbol", text: playerList[i][1]}),
-                $("<div>",{class: "player-name", text: (playerList[i][0]+":")})
-            )
-        );
+
+        //  Get game-board display data
+        var gameCellList = displayObject[1];
+
+        //  Display game-board data
+        var $gameBoard = $("#game-area");
+        $gameBoard.html("");
+        for (var i = 0; i < gameCellList.length; i++) {
+            $gameBoard.append(
+                $("<div>", {class: "game-cell", text: gameCellList[i]})
+            );
+        }
+
+        //  Get statistics display data
+
+        //  Display statistics data
+
+        //  Get game finish condition data
+
+        //  Display game finish condition
+
     }
 
-    //  Get game-board display data
-    var gameCellList = displayObject[1];
-
-    //  Display game-board data
-    var $gameBoard = $("#game-area");
-    $gameBoard.html("");
-    for (var i = 0; i < gameCellList.length; i++) {
-        $gameBoard.append(
-            $("<div>", {class: "game-cell", text: gameCellList[i]})
-        );
-    }
-
-    //  Get statistics display data
-
-    //  Display statistics data
-
-    //  Get game finish condition data
-
-    //  Display game finish condition
-
-}
+};
 //  Close displayController
