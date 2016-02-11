@@ -8,9 +8,11 @@ $(document).ready(function(){
 });
 
 //  Begin cell_click function
-function cell_click(selector){
-    var clickPosition = inputInterpreter(selector);
+function cell_click($selector){
+    var clickPosition = inputInterpreter($selector);
+    console.log('clickPosition : ', clickPosition);
     var displayObject = logicController.click(clickPosition);
+    console.log('displayObject : ', displayObject);
     displayController(displayObject);
 }
 //  Close cell_click function
@@ -18,8 +20,8 @@ function cell_click(selector){
 
 
 //  Begin inputInterpreter
-function inputInterpreter(selector) {
-
+function inputInterpreter($selector) {
+    return $selector.index();
 }
 //  Close inputInterpreter
 
