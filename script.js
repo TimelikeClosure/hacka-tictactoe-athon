@@ -83,10 +83,10 @@ var logicController = {
     playerArray: ["Player 1", "Player 2"],//array of players
     playerSymbol: ['X', 'O'],// array of player symbols
     playerTurn: "Player 1",//check to see who's turn it is
-    playerDisplay:[],
+    playerDisplay: [],
     displayArray: [],//array of all the arrays
     messageArray: [],//array holding all outcomes
-    playerOne: 1,//variable to toggle player 1 & 2
+    currentPlayer: 1,//variable to toggle player 1 & 2
     counter: 0,//keeps track of turns
     currentPosition: null,// variable to store clickPosition
 
@@ -109,8 +109,8 @@ var logicController = {
             this.currentPosition = clickPosition;//assign clickPosition to this.currentPosition
             this.assignPlayer(clickPosition);//call this.assignPlayer() function
             this.storeStats();//call this.storeStats() function
-            //result = this.checkOutcome();
-            //this.finalMessage(result);//call this.finalMessage(result)
+            result = this.checkOutcome();
+            this.finalMessage(result);//call this.finalMessage(result)
         } else {//else
             //return;//return
         }
@@ -134,34 +134,32 @@ var logicController = {
 
     assignPlayer: function (clickedPosition) {//define assignPlayer function
 
-        if (this.playerOne == 1) {//if condition: if: this.playerOne equals 1
+        if (this.currentPlayer == 1) {//if condition: if: this.playerOne equals 1
             this.symbolStorageArray[clickedPosition] = symbol2;//assign symbol2 to this.symbolArray[clickedPosition]
-            this.playerOne = 0;//toggle playerOne to switch to player2
+            this.currentPlayer = 0;//toggle playerOne to switch to player2
         } else {//else
             this.symbolStorageArray[clickedPosition] = symbol1;//assign symbol1 to this.symbolArray[clickedPosition]
-            this.playerOne = 1;//toggle playerOne to switch back to player1
+            this.currentPlayer = 1;//toggle playerOne to switch back to player1
         }
         this.counter++;//increment counter [where do we return counter?]
         //this.playerArray.push(this.singlePlayerArray);
-        this.displayArray[0]=(this.playerArray);//push this.playerArray and this.symbolArray into this.displayArray
-        this.displayArray[1]=(this.symbolStorageArrayArray);
+        this.displayArray[0] = (this.playerArray);//push this.playerArray and this.symbolArray into this.displayArray
+        this.displayArray[1] = (this.symbolStorageArray);
 
         this.playerDisplay = [];
-        for (var i = 0; i < this.playerArray.length; i++){//for loop: i is less than this.playerArray.length
-             var temp = [];//assign empty array to variable temp
+        for (var i = 0; i < this.playerArray.length; i++) {//for loop: i is less than this.playerArray.length
+            var temp = [];//assign empty array to variable temp
             temp.push(this.playerArray[i]);//push this.playerArray[i] into the temp array
             temp.push(this.playerSymbol[i]);//push this.playerArray[i] into the temp array
-            if (i==this.playerOne){
+            if (i == this.currentPlayer) {
                 temp.push(true);
-                //this.playerTurn = 'Player 2';
-            }else{
+            } else {
                 temp.push(false);
-                //this.playerTurn = "Player 1";
             }
             this.playerDisplay.push(temp);
         }
-        this.displayArray[0]=(this.playerDisplay);//push this.playerDisplay into this.displayArray
-        this.displayArray[1]=(this.symbolStorageArray);//push this.symbolStorageArray into this.displayArray
+        this.displayArray[0] = (this.playerDisplay);//push this.playerDisplay into this.displayArray
+        this.displayArray[1] = (this.symbolStorageArray);//push this.symbolStorageArray into this.displayArray
     },
 
 //@purpose: update stats section
@@ -183,21 +181,23 @@ var logicController = {
 //@returns:
     //none
 //@global
-    checkOutcome: function (){
+    checkOutcome: function () {
         var indexes = [];
         var compare = null;
         var result = null;
-        for (var i = 0; i < inputInterpreter.get_row_count(); i++){
-            indexes = this.get_row_indexes(i);
+        var matches = 0;
+        for (var i = 0; i < inputInterpreter.get_row_count(); i++) {
+            indexes = inputInterpreter.get_row_indexes(i);
             compare = this.symbolStorageArray[indexes[0]];
-            for(var j = 1; j< indexes.length; j++){
-                if (this.symbolStorageArray[indexes[j]] == symbol1 || this.symbolStorageArray[indexes[j]] == symbol2){
+            for (var j = 1; j < indexes.length; j++) {
+                if (this.symbolStorageArray[indexes[j]] == symbol1 || this.symbolStorageArray[indexes[j]] == symbol2) {
                     if (compare == this.symbolStorageArray[indexes[j]]) {
-                        result = "player1"
-                    }else{
+                        result = this.symbolStorageArray[indexes[j]];
+                        matches++;
+                    } else {
                         return;
                     }
-                }else{
+                } else {
                     return;
                 }
             }
@@ -205,16 +205,29 @@ var logicController = {
         }
     },
 
-    finalMessage: function (result){//define finalMessage function
-        if (result == "player1" || result == "player2") {//if condition: if: result equals "player1" or "player2"
-            this.messageArray.push(['Win!', result]);//['win',result] into this.messageArray
-        }else if (result == "tie!"){//else if result equals "tie"
-            this.messageArray.push(["Tie!"]);//['tie!'] into this.messageArray
-        }else{//else
-            return;//return
+    finalMessage: function (result) {//define finalMessage function
+        var output = null;
+        if (result == symbol1 || result == symbol2) {//if condition: if: result equals "player1" or "player2"
+            for(var i = 0; i <this.playerDisplay.length-1; i++)
+                if (result == this.playerDisplay[i][1]) {
+                    output = (this.playerDisplay[i][0]);
+                    this.messageArray.push(['Win!', output]);//['win',output] into this.messageArray
+                }else {
+                    output = (this.playerDisplay[i+1][0]);
+                    this.messageArray.push(['Win!', output]);//['win',output] into this.messageArray
+                }
+
+
+            }
+            //    this.messageArray.push(['Win!', output]);//['win',output] into this.messageArray
+            //}else if (result == "tie!"){//else if result equals "tie"
+            //    this.messageArray.push(["Tie!"]);//['tie!'] into this.messageArray
+            //}else{//else
+            //    return;//return
+            //}
+            //this.displayArray[2]=(this.messageArray);//push this.messageArray into this.displayArray
         }
-        this.displayArray[2]=(this.messageArray);//push this.messageArray into this.displayArray
-    }
+
 
 };
 //@purpose: update stats section
