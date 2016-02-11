@@ -26,8 +26,6 @@ function inputInterpreter($selector) {
 
 var symbol1 = 'x';
 var symbol2 = 'o';
-var p1Score =3;
-var p2Score =2;
 
 
 
@@ -49,50 +47,63 @@ var logicController = {
     //displayArray.slice: a copy of the displayArray to pass through the DisplayController function
 //@local:
     //this.elementClickedArray
+    //this.currentPosition
+    //this.assignPlayer(clickPosition)
+    //this.storeStats()
+    //this.finalMessage(result)
 //@global
     //none
-    click: function (clickPosition) {
-        if (this.elementClickedArray[clickPosition] === '') {
-            this.elementClickedArray[clickPosition] = clickPosition;
-            this.currentPosition = clickPosition;
-            this.assignPlayer(clickPosition);
-            this.storeStats();
-            this.finalMessage(p1Score,p2Score);
-        } else {
-            //return;
+    click: function (clickPosition) {//define click function
+        if (this.elementClickedArray[clickPosition] === '') {//if condition: if: this.elementCLickedArray[clickPosition] equals '' (empty string)
+            this.elementClickedArray[clickPosition] = clickPosition;//assign clickPosition to this.elementClickedArray[clickPosition]
+            this.currentPosition = clickPosition;//assign clickPosition to this.currentPosition
+            this.assignPlayer(clickPosition);//call this.assignPlayer() function
+            this.storeStats();//call this.storeStats() function
+            //result = this.checkOutcome();
+            //this.finalMessage(result);//call this.finalMessage(result)
+        } else {//else
+            //return;//return
         }
+        return this.displayArray;//return this.displayArray
     },
 
 //@purpose: creates the items to go into player array; player name, symbol, true or false it is that player's turn
 //@params:
-    //none
+    //clickedPosition
 //@returns:
-    //playerArray:first array in DisplayArray
+    //none
+//@local:
+    //this.playerOne
+    //this.playerArray
+    //this.symbolArray
+    //this.elementCLickedArray
+    //this.currentPosition
+    //this.counter
+    //this.displayArray
 //@global
-    //symbol1:symbol (img) for player 1
-    //symbol2:symbol (img) for player 2
-    assignPlayer: function (clickedPosition) {
+
+    assignPlayer: function (clickedPosition) {//define assignPlayer function
 
 
-        if (this.playerOne == 1) {
-            this.playerArray[0] = 1;
-            this.playerArray[1] = symbol1;
-            this.symbolArray[clickedPosition] = symbol1;
-            this.playerOne = 0;
+        if (this.playerOne == 1) {//if condition: if: this.playerOne equals 1
+            this.playerArray[0] = 1;//assign 1 to this.playerArray[0]; "1" indicates player "1"
+            this.playerArray[1] = symbol1;//assign symbol1 to this.playerArray[1]
+            this.symbolArray[clickedPosition] = symbol1;//assign symbol1 to this.symbolArray[clickedPosition]
+            this.playerOne = 0;//toggle playerOne to switch to player2
         } else {
-            this.playerArray[0] = 2;
-            this.playerArray[1] = symbol2;
-            this.symbolArray[clickedPosition] = symbol2;
-            this.playerOne = 1;
+            this.playerArray[0] = 2;//assign 2 to this.playerArray[0]; "" indicates player "2"
+            this.playerArray[1] = symbol2;//assign symbol2 to this.playerArray[1]
+            this.symbolArray[clickedPosition] = symbol2;//assign symbol2 to this.symbolArray[clickedPosition]
+            this.playerOne = 1;//toggle playerOne to switch back to player1
         }
-        if (this.elementClickedArray[this.currentPosition] == clickedPosition) {
-            this.playerArray[2] = true;
-            this.currentPosition = null;
-        } else {
-            this.playerArray[2] = false;
+        if (this.elementClickedArray[this.currentPosition] == clickedPosition) {//if condition: if: this.elementClickedArray[this.currentPosition] equals clickPosition
+            this.playerArray[2] = true;//assign true to this.playerArray[2]
+            this.currentPosition = null;//reset this.currentPosition to null
+        } else {//else
+            this.playerArray[2] = false;//assign false to this.playerArray[2]
         }
-        this.counter++;
-        this.displayArray.push(this.playerArray, this.symbolArray);
+        this.counter++;//increment counter [where do we return counter?]
+        this.displayArray.push(this.playerArray, this.symbolArray);//push this.playerArray and this.symbolArray into this.displayArray
 
     },
 
@@ -109,17 +120,25 @@ var logicController = {
         //this.displayArray.push(this.statsArray
     },
 
-    finalMessage: function (p1Score,p2Score){
-        if (p1Score > p2Score) {
-            this.messageArray.push(['Win!', 'Player 1'])
-        }else if (p1Score < p2Score){
-            this.messageArray.push(['Win!', 'Player 2'])
-        }else if (p1Score == p2Score){
-            this.messageArray.push(["Tie!"])
-        }else{
-            return;
+    //@purpose:
+//@params:
+    //none
+//@returns:
+    //none
+//@global
+    checkOutcome: function (){
+
+    },
+
+    finalMessage: function (result){//define finalMessage function
+        if (result == "player1" || result == "player2") {//if condition: if: result equals "player1" or "player2"
+            this.messageArray.push(['Win!', result]);//['win',result] into this.messageArray
+        }else if (result == "tie!"){//else if result equals "tie"
+            this.messageArray.push(["Tie!"]);//['tie!'] into this.messageArray
+        }else{//else
+            return;//return
         }
-        this.displayArray.push(this.messageArray);
+        this.displayArray.push(this.messageArray);//push this.messageArray into this.displayArray
     }
 
 };
