@@ -172,7 +172,25 @@ var logicController = {
     //none
 //@global
     checkOutcome: function (){
-
+        var indexes = [];
+        var compare = null;
+        var result = null;
+        for (var i = 0; i < inputInterpreter.get_row_count(); i++){
+            indexes = this.get_row_indexes(i);
+            compare = this.symbolStorageArray[indexes[0]];
+            for(var j = 1; j< indexes.length; j++){
+                if (this.symbolStorageArray[indexes[j]] == symbol1 || this.symbolStorageArray[indexes[j]] == symbol2){
+                    if (compare == this.symbolStorageArray[indexes[j]]) {
+                        result = "player1"
+                    }else{
+                        return;
+                    }
+                }else{
+                    return;
+                }
+            }
+            return result;
+        }
     },
 
     finalMessage: function (result){//define finalMessage function
