@@ -183,7 +183,7 @@ var logicController = {
                         result = this.symbolStorageArray[indexes[j]];
                         matches++;
                     } else {
-                        return;
+                        return "tie!";
                     }
                 } else {
                     return;
