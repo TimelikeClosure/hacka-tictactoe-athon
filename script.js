@@ -51,8 +51,20 @@ inputInterpreter = {
         return elementArray;
 
     },
-    get_diagonal: function (diagonalIndex) { // returns indexes in diagonal # diagonalIndex (0: backslash, 1: forward slash)
-
+    get_diagonal_indexes: function (diagonalIndex) { // returns indexes in diagonal # diagonalIndex (0: backslash, 1: forward slash)
+        var elementArray = [];
+        if (diagonalIndex == 0) {
+            for (var i = 0; i < this.get_grid_count(); i += this.get_column_count() + 1) {
+                elementArray.push(i);
+            }
+        } else if (diagonalIndex == 1) {
+            for (var i = this.get_column_count() - 1; i < this.get_grid_count() - 1; i += this.get_column_count() - 1) {
+                elementArray.push(i);
+            }
+        } else {
+            return null;
+        }
+        return elementArray;
     }
 };
 //  Close inputInterpreter
