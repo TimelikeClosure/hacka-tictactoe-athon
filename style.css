@@ -36,7 +36,7 @@ img{
 /*Begin main section styling*/
 .main {
     background-color: black;
-   // background-image: url("https://www.colourbox.com/preview/2840770-crayon-sketched-tic-tac-toe-playing-field-for-symbolic-gambling.jpg");
+    background-image: url("images/ttt_background1.jpg");
     box-sizing: border-box;
     height: 100vh;
     width: 100%;
@@ -76,7 +76,7 @@ ol >li{
 .game-area {
     height: 70%;
     width: 50%;
-    background-color: whitesmoke;
+    background-color: black;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -103,10 +103,17 @@ ol >li{
     text-align: center;
 }
 /*Close stats section styling*/
+/*game reset button styling start here*/
 #game-reset{
     margin-top: 1%;
     background-color: black;
     color: white;
     border: 2px solid darkred;
-
+}
+/*game reset button styling ends here*/
+/*model styling start here, wining message*/
+.modal-content{
+    background-color: black;
+    color:red;
+    font-family:"Tempus Sans ITC";
 }
