@@ -33,30 +33,30 @@ var logicController = {
     playerArray:[],
     imgArray:[],
     statArray:[],
+    currentPlayerArray: [],
+    elementClickedArray: ['','','','','','','','',''],
 
-    click: function(array){
-        if (clickPosition != null){
-            this.displayLogic();
-        }else{
-            this.playerInfo();
-            this.boardTiles();
-            this.turnCounter();
-            this.switchPlayer();
-            this.displayLogic();
+    click: function(clickPosition){
+        for(var i = 0; i < clickPositionArray.length; i++){
+            if (this.elementClickedArray[clickPosition] == ''){
+                this.elementClickedArray[clickPosition] = clickPosition;
+                this.turnCounter();
+                this.switchPlayer();
+                this.displayLogic();
+            }else {
+                this.displayLogic();
+            }
+
         }
-    },
-
-    PlayerObject: function(number,symbol,turn){
-        this.number = number;
-        this.symbol = symbol;
-        this.turn = turn;
-    },
-
-    playerInfo: function(array) {
-        var result = new this.PlayerObject(array[0],array[1],array[2]);
-        var tileSymbol = array[1];
-        this.playerArray.push(result);
-        this.displayArray.push(this.playerArray);
+        //if (clickPosition != null){
+        //    this.displayLogic();
+        //}else{
+        //    this.playerInfo();
+        //    this.boardTiles();
+        //    this.turnCounter();
+        //    this.switchPlayer();
+        //    this.displayLogic();
+        //}
     },
 
     boardTiles: function(tileSymbol){
@@ -80,6 +80,7 @@ var logicController = {
         }
         whosTurn = this.players;
         this.playerArray.push(whosTurn);
+        this.currentPlayerArray = whosTurn;
         },
 
     displayLogic: function(){
@@ -93,7 +94,18 @@ var logicController = {
 
 
 
-
+//PlayerObject: function(number,symbol,turn){
+//    this.number = number;
+//    this.symbol = symbol;
+//    this.turn = turn;
+//},
+//
+//playerInfo: function(array) {
+//    var result = new this.PlayerObject(array[0],array[1],array[2]);
+//    var tileSymbol = array[1];
+//    this.playerArray.push(result);
+//    this.displayArray.push(this.playerArray);
+//},
 
 
 
