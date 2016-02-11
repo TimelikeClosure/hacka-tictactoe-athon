@@ -1,0 +1,119 @@
+
+/*Begin header styling*/
+.header {
+    background-color: white;
+    box-sizing: border-box;
+    height: 15%;
+    width: 100%;
+    background-image: url("images/ttt_logo.png");
+    background-repeat: no-repeat;
+    border-bottom: 5px solid black;
+    border-top: 5px solid black;
+}
+.heading{
+    text-align: center;
+    font-family:"Tempus Sans ITC";
+    font-size:3em ;
+    color:red;
+    text-shadow: -3px -3px 3px gray;
+    position: relative;
+    -webkit-animation: mymove 10s infinite; /* Chrome, Safari, Opera */
+    animation: mymove 10s infinite;
+}
+@-webkit-keyframes mymove {
+
+    0%   {color: red; left: 0px; top: 0px;}
+    25%  {color: black; left: 20%; top: 0px;}
+    50%  {color: red; left: 20%;}
+    75%  {color: black; left: -20%;}
+    100% {color: red; left: 0px; top: 0px;}
+}
+/*Close header styling*/
+img{
+    width: 100%;
+    height: 100%;
+}
+/*Begin main section styling*/
+.main {
+    background-color: black;
+    background-image: url("images/ttt_background1.jpg");
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+
+}
+/*Close main section styling*/
+
+/*Begin player list styling*/
+.player-list_area {
+    height: 15%;
+    width: 75%;
+    border: 2px solid darkred;
+    background-color:darkgray;
+    text-shadow: -3px -3px 3px gray;
+    font-family: "Tempus Sans ITC";
+    font-weight: bolder;
+    font-size: 1em;
+    color: black;
+}
+ol >li{
+    display: inline-block;
+    margin-left: 20%;
+}
+.current_player{
+    color:red;
+    font-size: 1.5em;
+}
+
+/*Close player list styling*/
+
+/*Begin game board styling*/
+.game-area {
+    height: 70%;
+    width: 50%;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.game-cell {
+    box-sizing: border-box;
+    height: 33%;
+    width: 33%;
+    border: 2px solid darkred;
+    box-shadow: -3px -3px 3px gray;
+}
+/*Close game board styling*/
+
+/*Begin stats section styling*/
+.stats {
+    height: 15%;
+    width: 75%;
+    border: 2px solid darkred;
+    background-color:darkgray;
+    text-align: center;
+}
+/*Close stats section styling*/
+/*game reset button styling start here*/
+#game-reset{
+    margin-top: 1%;
+    background-color: black;
+    color: white;
+    border: 2px solid darkred;
+}
+/*game reset button styling ends here*/
+/*model styling start here, wining message*/
+.modal-content{
+    background-color: black;
+    color:red;
+    font-family:"Tempus Sans ITC";
+}
