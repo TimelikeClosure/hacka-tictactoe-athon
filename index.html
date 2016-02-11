@@ -16,21 +16,21 @@
     <body>
         <header class="header">Tic Tac Toe</header>
         <main class="main container-fluid">
-            <section id="player" class="player-list">
-                <ol>Player List
-                    <li>
-                        <div class="player-turn">--></div>
+            <div id="player" class="player-list">
+                <ol id="player_list">
+                    <li id ="player1">
+                        <div class="player-turn"></div>
                         <div class="player-symbol">X</div>
-                        <div class="player-name">player1</div>
+                        <div class="player-name">player1:</div>
                     </li>
-                    <li>
+                    <li id ="player2">
                         <div class="player-turn"></div>
                         <div class="player-symbol">O</div>
-                        <div class="player-name">player2</div>
+                        <div class="player-name">player2:</div>
                     </li>
                 </ol>
-            </section>
-            <section id="game-area" class="game-area">
+            </div>
+            <div id="game-area" class="game-area">
                 <div class="game-cell">div0</div>
                 <div class="game-cell">div1</div>
                 <div class="game-cell">div2</div>
@@ -40,10 +40,10 @@
                 <div class="game-cell">div6</div>
                 <div class="game-cell">div7</div>
                 <div class="game-cell">div8</div>
-            </section>
-            <section id="stats" class="stats">Stats
+            </div>
+            <div id="stats" class="stats">Stats
                 <button id="game-reset">Reset Game</button>
-            </section>
+            </div>
         </main>
     </body>
 
