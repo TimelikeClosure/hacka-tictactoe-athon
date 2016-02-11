@@ -154,6 +154,9 @@ function displayController(displayObject) {
 
     //  Display statistics data
 
+    //  Get game finish condition data
+
+    //  Display game finish condition
 
 }
 //  Close displayController
