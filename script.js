@@ -86,7 +86,7 @@ var logicController = {
     playerDisplay:[],
     displayArray: [],//array of all the arrays
     messageArray: [],//array holding all outcomes
-    playerOne: 1,//variable to toggle player 1 & 2
+    playerOne: 0,//variable to toggle player 1 & 2
     counter: 0,//keeps track of turns
     currentPosition: null,// variable to store clickPosition
 
@@ -135,10 +135,10 @@ var logicController = {
     assignPlayer: function (clickedPosition) {//define assignPlayer function
 
         if (this.playerOne == 1) {//if condition: if: this.playerOne equals 1
-            this.symbolStorageArray[clickedPosition] = symbol2;//assign symbol2 to this.symbolArray[clickedPosition]
+            this.symbolStorageArray[clickedPosition] = this.playerSymbol[1];//assign this.playerSymbol[1] to this.symbolArray[clickedPosition]
             this.playerOne = 0;//toggle playerOne to switch to player2
         } else {//else
-            this.symbolStorageArray[clickedPosition] = symbol1;//assign symbol1 to this.symbolArray[clickedPosition]
+            this.symbolStorageArray[clickedPosition] = this.playerSymbol[0];//assign this.playerSymbol[0] to this.symbolArray[clickedPosition]
             this.playerOne = 1;//toggle playerOne to switch back to player1
         }
         this.counter++;//increment counter [where do we return counter?]

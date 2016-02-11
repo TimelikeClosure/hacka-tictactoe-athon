@@ -9,6 +9,7 @@
     background-repeat: no-repeat;
     border-bottom: 5px solid black;
     border-top: 5px solid black;
+    overflow: hidden;
 }
 .heading{
     text-align: center;
