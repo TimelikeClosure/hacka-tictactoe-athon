@@ -23,11 +23,11 @@
 }
 @-webkit-keyframes mymove {
 
-    0%   {color: red; left: 0px; top: 0px;}
-    25%  {color: black; left: 20%; top: 0px;}
+    0%   {color: red; left: 0;}
+    25%  {color: black; left: 20%;}
     50%  {color: red; left: 20%;}
     75%  {color: black; left: -20%;}
-    100% {color: red; left: 0px; top: 0px;}
+    100% {color: red; left: 0;}
 }
 /*Close header styling*/
 img{
@@ -51,6 +51,10 @@ img{
 /*Close main section styling*/
 
 /*Begin player list styling*/
+@font-face {
+    font-family: "Tempus Sans ITC";
+    src: url(TEMPSITC.ttf);
+}
 .player-list_area {
     height: 15%;
     width: 75%;
