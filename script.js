@@ -34,8 +34,11 @@ var symbol2 = 'o';
 //  Begin logicController
 var logicController = {
     elementClickedArray: ['', '', '', '', '', '', '', '', ''],//array that holds clicked elements; checks if element is already clicked
-    symbolArray: ['', '', '', '', '', '', '', '', ''],//storage for clicked symbols
-    playerArray: [],//array that holds all player info
+    symbolStorageArray: ['', '', '', '', '', '', '', '', ''],//storage for clicked symbols
+    playerArray: ["Player 1", "Player 2"],//array of players
+    playerSymbol: ['x', 'o'],// array of player symbols
+    playerTurn: "Player 1",//check to see who's turn it is
+    playerDisplay:[],
     displayArray: [],//array of all the arrays
     messageArray: [],//array holding all outcomes
     playerOne: 1,//variable to toggle player 1 & 2
@@ -66,7 +69,7 @@ var logicController = {
         } else {//else
             //return;//return
         }
-        return this.displayArray;//return this.displayArray
+        return this.displayArray.slice();//return this.displayArray.slice
     },
 
 //@purpose: creates the items to go into player array; player name, symbol, true or false it is that player's turn
@@ -86,27 +89,34 @@ var logicController = {
 
     assignPlayer: function (clickedPosition) {//define assignPlayer function
 
-
         if (this.playerOne == 1) {//if condition: if: this.playerOne equals 1
-            this.playerArray[0] = 1;//assign 1 to this.playerArray[0]; "1" indicates player "1"
-            this.playerArray[1] = symbol1;//assign symbol1 to this.playerArray[1]
-            this.symbolArray[clickedPosition] = symbol1;//assign symbol1 to this.symbolArray[clickedPosition]
+            this.symbolStorageArray[clickedPosition] = symbol1;//assign symbol1 to this.symbolArray[clickedPosition]
             this.playerOne = 0;//toggle playerOne to switch to player2
-        } else {
-            this.playerArray[0] = 2;//assign 2 to this.playerArray[0]; "" indicates player "2"
-            this.playerArray[1] = symbol2;//assign symbol2 to this.playerArray[1]
-            this.symbolArray[clickedPosition] = symbol2;//assign symbol2 to this.symbolArray[clickedPosition]
+        } else {//else
+            this.symbolStorageArray[clickedPosition] = symbol2;//assign symbol2 to this.symbolArray[clickedPosition]
             this.playerOne = 1;//toggle playerOne to switch back to player1
         }
-        if (this.elementClickedArray[this.currentPosition] == clickedPosition) {//if condition: if: this.elementClickedArray[this.currentPosition] equals clickPosition
-            this.playerArray[2] = true;//assign true to this.playerArray[2]
-            this.currentPosition = null;//reset this.currentPosition to null
-        } else {//else
-            this.playerArray[2] = false;//assign false to this.playerArray[2]
-        }
         this.counter++;//increment counter [where do we return counter?]
-        this.displayArray.push(this.playerArray, this.symbolArray);//push this.playerArray and this.symbolArray into this.displayArray
+        //this.playerArray.push(this.singlePlayerArray);
+        this.displayArray[0]=(this.playerArray);//push this.playerArray and this.symbolArray into this.displayArray
+        this.displayArray[1]=(this.symbolStorageArrayArray);
 
+        this.playerDisplay = [];
+        for (var i = 0; i < this.playerArray.length; i++){//for loop: i is less than this.playerArray.length
+             var temp = [];//assign empty array to variable temp
+            temp.push(this.playerArray[i]);//push this.playerArray[i] into the temp array
+            temp.push(this.playerSymbol[i]);//push this.playerArray[i] into the temp array
+            if (i==this.playerOne){
+                temp.push(true);
+                //this.playerTurn = 'Player 2';
+            }else{
+                temp.push(false);
+                //this.playerTurn = "Player 1";
+            }
+            this.playerDisplay.push(temp);
+        }
+        this.displayArray[0]=(this.playerDisplay);//push this.playerDisplay into this.displayArray
+        this.displayArray[1]=(this.symbolStorageArray);//push this.symbolStorageArray into this.displayArray
     },
 
 //@purpose: update stats section
@@ -140,7 +150,7 @@ var logicController = {
         }else{//else
             return;//return
         }
-        this.displayArray.push(this.messageArray);//push this.messageArray into this.displayArray
+        this.displayArray[2]=(this.messageArray);//push this.messageArray into this.displayArray
     }
 
 };
