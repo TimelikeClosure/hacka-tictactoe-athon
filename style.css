@@ -3,55 +3,73 @@
 .header {
     background-color: aliceblue;
     box-sizing: border-box;
-    height: 15vh;
+    height: 15%;
     width: 100%;
+
     border-bottom: 5px solid black;
+    border-top: 5px solid black;
+
+}
+.heading{
+    text-align: center;
+    font-family:"Tempus Sans ITC";
+    font-size:3em ;
+    text-shadow: -3px -3px 3px gray;
+
 }
 /*Close header styling*/
 
 /*Begin main section styling*/
 .main {
-    background-color: lightblue;
+    background-color: silver;
     box-sizing: border-box;
-    height: 85vh;
+    height: 100vh;
     width: 100%;
-   // display: flex;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
     align-content: center;
+
 }
 /*Close main section styling*/
 
 /*Begin player list styling*/
 .player-list {
     height: 15%;
-    width: 50%;
-    margin: 1% auto;
+    width: 75%;
     background-color: white;
     border: 2px solid black;
+    text-shadow: -3px -3px 3px gray;
+    font-family: "Tempus Sans ITC";
+    font-weight: bolder;
+    font-size: 1em;
+
 }
 ol >li{
     display: inline-block;
     margin-left: 20%;
 }
+img{
+    width: 80%;
+    height: 80%;
+}
 /*Close player list styling*/
 
 /*Begin game board styling*/
 .game-area {
-    height: 80%;
+    height: 70%;
     width: 50%;
-    background-color: black;
+    background-color: #6A6969;
     display: flex;
     flex-direction: row;
-    margin: 0 auto;
     justify-content: center;
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.game-area .game-cell {
+.game-cell {
     box-sizing: border-box;
     height: 33%;
     width: 33%;
@@ -62,10 +80,13 @@ ol >li{
 /*Begin stats section styling*/
 .stats {
     height: 15%;
-    width: 50%;
-    margin: 1% auto;
+    width: 75%;
     border: 2px solid black;
     background-color: white;
-
+    text-align: center;
 }
 /*Close stats section styling*/
+#game-reset{
+    margin-top: 1%;
+
+}
