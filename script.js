@@ -255,16 +255,14 @@ var displayController = {
         var $playerList = $('#player_list');
         $playerList.html("");
         for (var i = 0; i < playerList.length; i++) {
-            if (playerList[i][2]) { // to be removed
-                var turn = "-->";
+            var $player = $("<li>").attr("id", playerList[i][0]);
+            if (playerList[i][2]) {
+                $player.addClass("current_player");
             } else {
-                turn = "";
+                $player.removeClass("current_player");
             }
-
-
             $playerList.append(
-                $("<li>").attr("id", playerList[i][0]).append(
-                    $("<div>", {class: "player-turn", text: turn}),
+                $player.append(
                     $("<div>", {class: "player-symbol", text: playerList[i][1]}),
                     $("<div>", {class: "player-name", text: (playerList[i][0] + ":")})
                 )
