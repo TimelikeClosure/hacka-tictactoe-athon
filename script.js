@@ -2,11 +2,16 @@ $(document).ready(function(){
     $('#game-area').on('click', '.game-cell', function(){
         cell_click($(this));
     });
+    //  Display test function
+    /*$('#player_list').click(function(){
+        var bob = [[["player2","O",false],["player1","X",true]],'',''];
+        displayController(bob);
+    });*/
 });
 
 //  Begin cell_click function
 function cell_click($selector){
-    var clickPosition = inputInterpreter($selector);
+    var clickPosition = inputInterpreter.cell_click($selector);
     console.log('clickPosition : ', clickPosition);
     var displayObject = logicController.click(clickPosition);
     console.log('displayObject : ', displayObject);
@@ -17,9 +22,11 @@ function cell_click($selector){
 
 
 //  Begin inputInterpreter
-function inputInterpreter($selector) {
-    return $selector.index();
-}
+inputInterpreter = {
+    cell_click: function ($selector) {
+        return $selector.index();
+    }
+};
 //  Close inputInterpreter
 
 
@@ -119,8 +126,25 @@ var logicController = {
 function displayController(displayObject) {
 
     //  Get player-list display data
+    var playerList = displayObject[0];
 
     //  Display player-list data
+    var $playerList = $('#player_list');
+    $playerList.html("");
+    for (var i = 0; i < playerList.length; i++) {
+        if (playerList[i][2]) {
+            var turn = "-->";
+        } else {
+            turn = "";
+        }
+        $playerList.append(
+            $("<li>").attr("id", playerList[i][0]).append(
+                $("<div>",{class: "player-turn", text: turn}),
+                $("<div>",{class: "player-symbol", text: playerList[i][1]}),
+                $("<div>",{class: "player-name", text: (playerList[i][0]+":")})
+            )
+        );
+    }
 
     //  Get game-board display data
 
