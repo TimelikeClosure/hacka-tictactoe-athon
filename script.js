@@ -21,14 +21,20 @@ inputInterpreter = {
     cell_click: function ($selector) {
         return $selector.index();
     },
+    get_grid_count: function () {
+        return $('#game-area>*').length;
+    },
     get_row_count: function () { // returns number of rows on game grid
-
+        return Math.floor(Math.sqrt(this.get_grid_count()),1);
     },
     get_row_indexes: function (rowIndex) { // returns indexes in row # rowIndex
+        var elementArray = [];
+        for (var i = rowIndex; i < rowIndex; i += this.get_column_count()) {
 
+        }
     },
     get_column_count: function () { // returns number of columns on game grid
-
+        return this.get_row_count();
     },
     get_column_indexes: function (columnIndex) { // returns indexes in column # columnIndex
 
