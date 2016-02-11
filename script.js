@@ -4,7 +4,10 @@ $(document).ready(function(){
     });
     //  Display test function
     /*$('#player_list').click(function(){
-        var bob = [[["player2","O",false],["player1","X",true]],'',''];
+        var bob = [
+            [["player2","O",false],["player1","X",true]],
+            ["", "", "X", "O", "X", "", "O", "", ""],
+            ''];
         displayController(bob);
     });*/
 });
@@ -147,8 +150,16 @@ function displayController(displayObject) {
     }
 
     //  Get game-board display data
+    var gameCellList = displayObject[1];
 
     //  Display game-board data
+    var $gameBoard = $("#game-area");
+    $gameBoard.html("");
+    for (var i = 0; i < gameCellList.length; i++) {
+        $gameBoard.append(
+            $("<div>", {class: "game-cell", text: gameCellList[i]})
+        );
+    }
 
     //  Get statistics display data
 
