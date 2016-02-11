@@ -1,3 +1,6 @@
+var clickPosition = null;
+var clickPositionArray = [];
+
 $(document).ready(function(){
     $('#game-area').on('click', '.game-cell', function(){
         cell_click($(this));
@@ -25,40 +28,63 @@ function inputInterpreter(selector) {
 //  Begin logicController
 var logicController = {
     counter: 0,
-    player: 'x',
+    players: 'x',
+    displayArray:[],
     playerArray:[],
+    imgArray:[],
+    statArray:[],
 
     click: function(array){
         if (clickPosition != null){
             this.displayLogic();
         }else{
+            this.playerInfo();
+            this.boardTiles();
             this.turnCounter();
             this.switchPlayer();
-            array.slice();
             this.displayLogic();
         }
+    },
+
+    PlayerObject: function(number,symbol,turn){
+        this.number = number;
+        this.symbol = symbol;
+        this.turn = turn;
+    },
+
+    playerInfo: function(array) {
+        var result = new this.PlayerObject(array[0],array[1],array[2]);
+        var tileSymbol = array[1];
+        this.playerArray.push(result);
+        this.displayArray.push(this.playerArray);
+    },
+
+    boardTiles: function(tileSymbol){
+        this.imgArray.push(tileSymbol);
+        this.displayArray.push(this.imgArray);
     },
 
     turnCounter: function() {
         var countArray = [];
         this.counter++;//increment turn counter
         countArray = this.counter;
-        playerArray.push(countArray)
+        this.playerArray.push(countArray)
         },
 
     switchPlayer: function() {
         var whosTurn = [];
-        if (player == 'x'){
-            this.player = 'o';
+        if (this.players == 'x'){
+            this.players = 'o';
         }else {
-            this.player = 'x';
+            this.players = 'x';
         }
-        whosTurn = this.player;
-        playerArray.push(whosTurn);
+        whosTurn = this.players;
+        this.playerArray.push(whosTurn);
         },
 
     displayLogic: function(){
-        return playerArray;
+        return this.displayArray.slice();
+
     }
 
 
