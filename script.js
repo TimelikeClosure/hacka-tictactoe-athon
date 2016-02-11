@@ -111,10 +111,10 @@ var logicController = {
     assignPlayer: function (clickedPosition) {//define assignPlayer function
 
         if (this.playerOne == 1) {//if condition: if: this.playerOne equals 1
-            this.symbolStorageArray[clickedPosition] = symbol1;//assign symbol1 to this.symbolArray[clickedPosition]
+            this.symbolStorageArray[clickedPosition] = symbol2;//assign symbol2 to this.symbolArray[clickedPosition]
             this.playerOne = 0;//toggle playerOne to switch to player2
         } else {//else
-            this.symbolStorageArray[clickedPosition] = symbol2;//assign symbol2 to this.symbolArray[clickedPosition]
+            this.symbolStorageArray[clickedPosition] = symbol1;//assign symbol1 to this.symbolArray[clickedPosition]
             this.playerOne = 1;//toggle playerOne to switch back to player1
         }
         this.counter++;//increment counter [where do we return counter?]
@@ -307,9 +307,23 @@ var displayController = {
         var $gameBoard = $("#game-area");
         $gameBoard.html("");
         for (var i = 0; i < gameCellList.length; i++) {
+            var $gameCellImage;
+            switch (gameCellList[i]) {
+                case "X":
+                    $gameCellImage = $('<img>', {src: "images/pirate_ttt1.jpg"});
+                    break;
+                case "O":
+                    $gameCellImage = $('<img>', {src: "images/pirate_ttt.jpg"});
+                    break;
+                default:
+                    $gameCellImage = $('<img>');
+            }
             $gameBoard.append(
-                $("<div>", {class: "game-cell", text: gameCellList[i]})
+                //$("<div>", {class: "game-cell", text: gameCellList[i]})
                 //$("<div>", {class: "game-cell", background-image: gameCellList[i]})
+                $("<div>", {class: "game-cell"}).append(
+                    $gameCellImage
+                )
             );
         }
 
