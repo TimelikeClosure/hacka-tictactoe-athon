@@ -1,6 +1,3 @@
-var clickPosition = null;
-var clickPositionArray = [];
-
 $(document).ready(function(){
     $('#game-area').on('click', '.game-cell', function(){
         cell_click($(this));
@@ -29,49 +26,36 @@ function inputInterpreter($selector) {
 
 //  Begin logicController
 var logicController = {
-    counter: 0,
+    counter: 0, //keeps track of turns
     players: 'x',
-    displayArray:[],
-    playerArray:[],
-    imgArray:[],
-    statArray:[],
-    currentPlayerArray: [],
-    elementClickedArray: ['','','','','','','','',''],
+    displayArray:[],//final output array
+    playerArray:[],//array that holds all player info
+    imgArray:[],//array that hold imgs/symbols
+    statArray:[],//array that hold stats
+    currentPlayerArray: [],//holds who's turn it is
+    elementClickedArray: ['','','','','','','','',''],//array that holds clicked elements; checks if element is already clicked
 
     click: function(clickPosition){
-        for(var i = 0; i < clickPositionArray.length; i++){
-            if (this.elementClickedArray[clickPosition] == ''){
-                this.elementClickedArray[clickPosition] = clickPosition;
-                this.turnCounter();
-                this.switchPlayer();
-                this.displayLogic();
-            }else {
-                this.displayLogic();
-            }
 
+        if (this.elementClickedArray[clickPosition] === ''){
+            this.elementClickedArray[clickPosition] = clickPosition;
+            this.switchPlayer();
+            this.turnCounter();
+            this.displayLogic();
+        }else {
+            this.displayLogic();
         }
-        //if (clickPosition != null){
-        //    this.displayLogic();
-        //}else{
-        //    this.playerInfo();
-        //    this.boardTiles();
-        //    this.turnCounter();
-        //    this.switchPlayer();
-        //    this.displayLogic();
-        //}
+
+    },
+
+    assignSpace: function(clickPosition){
+
     },
 
     boardTiles: function(tileSymbol){
         this.imgArray.push(tileSymbol);
         this.displayArray.push(this.imgArray);
     },
-
-    turnCounter: function() {
-        var countArray = [];
-        this.counter++;//increment turn counter
-        countArray = this.counter;
-        this.playerArray.push(countArray)
-        },
 
     switchPlayer: function() {
         var whosTurn = [];
@@ -81,17 +65,19 @@ var logicController = {
             this.players = 'x';
         }
         whosTurn = this.players;
-        this.playerArray.push(whosTurn);
         this.currentPlayerArray = whosTurn;
         },
+
+    turnCounter: function() {
+        var countArray = [];
+        this.counter++;//increment turn counter
+        countArray = this.counter;
+    },
 
     displayLogic: function(){
         return this.displayArray.slice();
 
     }
-
-
-
 };
 
 
