@@ -20,14 +20,29 @@ function cell_click($selector){
 inputInterpreter = {
     cell_click: function ($selector) {
         return $selector.index();
+    },
+    get_row_count: function () { // returns number of rows on game grid
+
+    },
+    get_row_indexes: function (rowIndex) { // returns indexes in row # rowIndex
+
+    },
+    get_column_count: function () { // returns number of columns on game grid
+
+    },
+    get_column_indexes: function (columnIndex) { // returns indexes in column # columnIndex
+
+    },
+    get_diagonal: function (diagonalIndex) { // returns indexes in diagonal # diagonalIndex (0: backslash, 1: forward slash)
+
     }
 };
 //  Close inputInterpreter
 
 
 
-var symbol1 = 'x';
-var symbol2 = 'o';
+var symbol1 = 'X';
+var symbol2 = 'O';
 
 
 
@@ -36,7 +51,7 @@ var logicController = {
     elementClickedArray: ['', '', '', '', '', '', '', '', ''],//array that holds clicked elements; checks if element is already clicked
     symbolStorageArray: ['', '', '', '', '', '', '', '', ''],//storage for clicked symbols
     playerArray: ["Player 1", "Player 2"],//array of players
-    playerSymbol: ['x', 'o'],// array of player symbols
+    playerSymbol: ['X', 'O'],// array of player symbols
     playerTurn: "Player 1",//check to see who's turn it is
     playerDisplay:[],
     displayArray: [],//array of all the arrays
