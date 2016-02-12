@@ -431,8 +431,8 @@ var displayController = {
         //  Display statistics data
 
         //  Get game finish condition data
-        var game_message = displayObject[3];
-        if(game_message == []){
+        var game_message = displayObject[2];
+        if(game_message.length == 0){
             return null;
         }
         else if(game_message[0] == 'tie'){
