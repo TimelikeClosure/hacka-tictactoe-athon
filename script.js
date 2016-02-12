@@ -375,8 +375,25 @@ var displayController = {
         //  Display statistics data
 
         //  Get game finish condition data
-
+        var game_message = displayObject[3];
+        if(game_message == []){
+            return null;
+        }
+        else if(game_message[0] == 'tie'){
+            $("#messageModal .modal-body").fadeIn().html("Tie").addClass('text');
+            $("#messageModal").modal('show');
+        }
+        else{
+            $("#messageModal .modal-body").fadeIn().html("Win").addClass('text');
+            $("#messageModal").modal('show');
+        }
         //  Display game finish condition
+        //function display_win(){         //this function displayed message when user won the game
+        //
+        //    $("#messageModal .modal-body").fadeIn().html(" ").addClass('text');
+        //    $("#messageModal").modal('show');
+        //    reset_button();
+        //}
 
     }
 

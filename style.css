@@ -10,6 +10,7 @@
     border-bottom: 5px solid black;
     border-top: 5px solid black;
 }
+
 .heading{
     text-align: center;
     font-family:"Tempus Sans ITC";
@@ -19,6 +20,10 @@
     position: relative;
     -webkit-animation: mymove 10s infinite; /* Chrome, Safari, Opera */
     animation: mymove 10s infinite;
+}
+.heading:hover{
+
+
 }
 @-webkit-keyframes mymove {
 
@@ -51,15 +56,19 @@ img{
 
 /*Begin player list styling*/
 .player-list_area {
-    height: 15%;
+    height: 13%;
     width: 75%;
     border: 2px solid darkred;
     background-color:darkgray;
     text-shadow: -3px -3px 3px gray;
     font-family: "Tempus Sans ITC";
     font-weight: bolder;
-    font-size: 1em;
+    font-size: 70%;
     color: black;
+    -ms-transform: rotate(2deg); /* IE 9 */
+    -webkit-transform: rotate(2deg); /* Chrome, Safari, Opera */
+    transform: rotate(2deg);
+    margin-bottom: 1%;
 }
 ol >li{
     display: inline-block;
@@ -67,7 +76,7 @@ ol >li{
 }
 .current_player{
     color:red;
-    font-size: 1.5em;
+    font-size: 120%;
 }
 
 /*Close player list styling*/
@@ -96,11 +105,16 @@ ol >li{
 
 /*Begin stats section styling*/
 .stats {
-    height: 15%;
+    height: 13%;
     width: 75%;
     border: 2px solid darkred;
     background-color:darkgray;
     text-align: center;
+    margin-top: 1%;
+    -ms-transform: rotate(-2deg); /* IE 9 */
+    -webkit-transform: rotate(-2deg); /* Chrome, Safari, Opera */
+    transform: rotate(-2deg);
+    margin-bottom: 1%;
 }
 /*Close stats section styling*/
 /*game reset button styling start here*/
@@ -109,6 +123,11 @@ ol >li{
     background-color: black;
     color: white;
     border: 2px solid darkred;
+    -ms-transform: rotate(-5deg); /* IE 9 */
+    -webkit-transform: rotate(-5deg); /* Chrome, Safari, Opera */
+    transform: rotate(-5deg);
+    margin-bottom: 1%;
+    font-family: "Tempus Sans ITC";
 }
 /*game reset button styling ends here*/
 /*model styling start here, wining message*/
