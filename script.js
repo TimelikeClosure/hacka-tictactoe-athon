@@ -18,7 +18,7 @@ function cell_click($selector){
 
 //  Begin inputInterpreter
 inputInterpreter = {
-    cell_click: function ($selector) {
+    cell_click: function ($selector) { // Returns the index # of the clicked element
         return $selector.index();
     },
     get_grid_count: function () {
@@ -341,9 +341,9 @@ var displayController = {
 
 
         //  Display statistics data
+        var game_message = displayObject[2];        //assigning display array's 2 index to variable
 
         //  Get game finish condition data
-        var game_message = displayObject[2];        //assigning display array's 2 index to variable
         if(game_message.length == 0){               //checking for condition if array length is equal to 0 then nothing to return
             return null;
         }
@@ -352,7 +352,7 @@ var displayController = {
             $("#messageModal").modal('show');
         }
         else{        //checking for condition if array 0 index is equal to win then show up in modal
-            $("#messageModal .modal-body").fadeIn().html("You won the game <img src='images/ttt_logo.png' style='width: 15%'>").addClass('text');
+            $("#messageModal .modal-body").fadeIn().html("You won the game " + game_message[0][1] + " <img src='images/ttt_logo.png' style='width: 15%'>").addClass('text');
             $("#messageModal").modal('show');
         }
 
