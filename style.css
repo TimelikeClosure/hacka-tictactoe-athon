@@ -90,12 +90,12 @@ img{
 
 ol >li{
     display: inline-block;
-    margin:5% 20%;
+    margin:1% 20%;
 
 }
 .current_player{
     color:red;
-    font-size: 120%;
+    font-size: 150%;
 }
 
 /*Close player list styling*/
