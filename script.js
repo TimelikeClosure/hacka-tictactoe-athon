@@ -198,61 +198,67 @@ var logicController = {
             columnCompare = this.symbolStorageArray[columnIndexes[0]];//symbol of the first element in column
 
             for (var j = 1; j < rowIndexes.length; j++) { //for loop:
-                if (this.symbolStorageArray[rowIndexes[j]] == symbol1 || this.symbolStorageArray[rowIndexes[j]] == symbol2) {//
+                if (this.symbolStorageArray[rowIndexes[j]] == symbol1 || this.symbolStorageArray[rowIndexes[j]] == symbol2) {
+                    //if the current position in symbolStorageArray equals symbol1 or symbol2
+
                     if (rowCompare == this.symbolStorageArray[rowIndexes[j]]) {
-                        result = this.symbolStorageArray[rowIndexes[j]];
-                    } else {
-                        result = null;
-                        break;
+                        //if rowCompare (symbol of the first element in row) equals current position in symbolStorageArray
+                        result = this.symbolStorageArray[rowIndexes[j]]; //assign to result
+                    } else {//else
+                        result = null;//reset result to null
+                        break;//break out of this for loop
                     }
-                } else {
-                    result = null;
-                    break;
+                } else {//
+                    result = null;//reset result to null
+                    break;//break out of this for loop
                 }
             }
-            if (result != null) {
-                return result;
+            if (result != null) {//if result is not null
+                return result;//result result
             }
-            for (var k = 1; k < columnIndexes.length; k++) {
+            for (var k = 1; k < columnIndexes.length; k++) {//for loop:
                 if (this.symbolStorageArray[columnIndexes[k]] == symbol1 || this.symbolStorageArray[columnIndexes[k]] == symbol2) {
+                    //if the current position in symbolStorageArray equals symbol1 or symbol2
                     if (columnCompare == this.symbolStorageArray[columnIndexes[k]]) {
-                        result = this.symbolStorageArray[columnIndexes[j]];
-                    } else {
-                        result = null;
-                        break;
+                        //if columnCompare (symbol of the first element in column) equals current position in symbolStorageArray
+                        result = this.symbolStorageArray[columnIndexes[j]];//assign to result
+                    } else {//else
+                        result = null;//reset result to null
+                        break;//break out of for loop
                     }
-                } else {
-                    result = null;
-                    break;
+                } else {//else
+                    result = null;//reset result to null
+                    break;//break out of for loop
                 }
             }
-            if (result != null) {
-                return result;
+            if (result != null) {//if result is not null
+                return result;//result result
             }
         }
-        for (var l = 0; l < 2; l++) {
-            diagonalIndexes = inputInterpreter.get_diagonal_indexes(l);
-            diagonalCompare = this.symbolStorageArray[diagonalIndexes[0]];
-            for (var m = 1; m < diagonalIndexes.length; m++) {
+        for (var l = 0; l < 2; l++) {//for loop:
+            diagonalIndexes = inputInterpreter.get_diagonal_indexes(l);//store diagonal array from inputInterpreter.get_diagonal_indexes(i)
+            diagonalCompare = this.symbolStorageArray[diagonalIndexes[0]];//store diagonal array from inputInterpreter.get_diagonal_indexes(i)
+            for (var m = 1; m < diagonalIndexes.length; m++) {//for loop:
                 if (this.symbolStorageArray[diagonalIndexes[m]] == symbol1 || this.symbolStorageArray[diagonalIndexes[m]] == symbol2) {
+                    //if diagonalCompare (symbol of the first element in diagonal) equals current position in symbolStorageArray
                     if (diagonalCompare == this.symbolStorageArray[diagonalIndexes[m]]) {
-                        result = this.symbolStorageArray[diagonalIndexes[m]];
-                    } else {
-                        result = null;
-                        break;
+                        result = this.symbolStorageArray[diagonalIndexes[m]];//assign to result
+                    } else {//else
+                        result = null;//reset result to null
+                        break;//break out of for loop
                     }
-                } else {
-                    result = null;
-                    break;
+                } else {//else
+                    result = null;//reset result to null
+                    break;//break out of for loop
                 }
             }
-            if (result != null) {
-                return result;
+            if (result != null) {//if result is not null
+                return result;//result result
             }
         }
-        if (this.counter == inputInterpreter.get_grid_count()) {
-            result = "tie!";
-            return result;
+        if (this.counter == inputInterpreter.get_grid_count()) {//if counter == 9
+            result = "tie!"; //assign 'tie!' to result
+            return result;//return result
         }
     },
 
@@ -270,17 +276,8 @@ var logicController = {
                 }
             } else if (result == "tie!") {//else if result equals "tie"
                 this.messageArray.push("Tie!");//['tie!'] into this.messageArray
-
-                //    this.messageArray.push(['Win!', output]);//['win',output] into this.messageArray
-                //}else if (result == "tie!"){//else if result equals "tie"
-                //    this.messageArray.push(["Tie!"]);//['tie!'] into this.messageArray
-                //}else{//else
-                //    return;//return
-                //}
-
             }
             this.displayArray[2]=(this.messageArray);//push this.messageArray into this.displayArray
-
         }
     };
 //  Close logicController
