@@ -182,17 +182,24 @@ var logicController = {
     //none
 //@global
     checkOutcome: function () {
-        var indexes = [];
-        var compare = null;
+        var rowIndexes = [];
+        var columnIndexes = [];
+        var diagonalIndexes = [];
+        var rowCompare = null;
+        var columnCompare = null;
+        var diagonalCompare = null;
         var result = null;
         var matches = 0;
         for (var i = 0; i < inputInterpreter.get_row_count(); i++) {
-            indexes = inputInterpreter.get_row_indexes(i);
-            compare = this.symbolStorageArray[indexes[0]];
-            for (var j = 1; j < indexes.length; j++) {
-                if (this.symbolStorageArray[indexes[j]] == symbol1 || this.symbolStorageArray[indexes[j]] == symbol2) {
-                    if (compare == this.symbolStorageArray[indexes[j]]) {
-                        result = this.symbolStorageArray[indexes[j]];
+            rowIndexes = inputInterpreter.get_row_indexes(i);
+            columnIndexes = inputInterpreter.get_column_indexes(i);
+            rowCompare = this.symbolStorageArray[rowIndexes[0]];
+            columnCompare = this.symbolStorageArray[columnIndexes[0]];
+
+            for (var j = 1; j < rowIndexes.length; j++) {
+                if (this.symbolStorageArray[rowIndexes[j]] == symbol1 || this.symbolStorageArray[rowIndexes[j]] == symbol2) {
+                    if (rowCompare == this.symbolStorageArray[rowIndexes[j]]) {
+                        result = this.symbolStorageArray[rowIndexes[j]];
                         matches++;
                     } else {
                         return;
@@ -200,36 +207,72 @@ var logicController = {
                 } else {
                     return;
                 }
+                if (result != null) {
+                    return result;
+                }
+                for (var k = 1; k < columnIndexes.length; k++) {
+                    if (this.symbolStorageArray[columnIndexes[k]] == symbol1 || this.symbolStorageArray[columnIndexes[k]] == symbol2) {
+                        if (columnCompare == this.symbolStorageArray[columnIndexes[k]]) {
+                            result = this.symbolStorageArray[columnIndexes[j]];
+                            matches++;
+                        } else {
+                            return;
+                        }
+                    } else {
+                        return;
+                    }
+                }
+                if (result != null) {
+                    return result;
+                }
             }
-            return result;
+            for (var l = 0; l < 2; l++) {
+                diagonalIndexes = inputInterpreter.get_diagonal_indexes(l);
+                diagonalCompare = this.symbolStorageArray[diagonalIndexes[0]];
+                for (var m = 1; m < diagonalIndexes.length; m++) {
+                    if (this.symbolStorageArray[diagonalIndexes[m]] == symbol1 || this.symbolStorageArray[diagonalIndexes[m]] == symbol2) {
+                        if (diagonalCompare == this.symbolStorageArray[diagonalIndexes[m]]) {
+                            result = this.symbolStorageArray[diagonalIndexes[m]];
+                            matches++;
+                        } else {
+                            return;
+                        }
+                    } else {
+                        return;
+                    }
+                }
+            }
         }
     },
 
-    finalMessage: function (result) {//define finalMessage function
-        var output = null;
-        if (result == symbol1 || result == symbol2) {//if condition: if: result equals "player1" or "player2"
-            for(var i = 0; i <this.playerDisplay.length-1; i++)
-                if (result == this.playerDisplay[i][1]) {
-                    output = (this.playerDisplay[i][0]);
-                    this.messageArray.push(['Win!', output]);//['win',output] into this.messageArray
-                }else {
-                    output = (this.playerDisplay[i+1][0]);
-                    this.messageArray.push(['Win!', output]);//['win',output] into this.messageArray
+        finalMessage: function (result) {//define finalMessage function
+            var output = null;
+            if (result == symbol1 || result == symbol2) {//if condition: if: result equals "player1" or "player2"
+                for (var i = 0; i < this.playerDisplay.length - 1; i++) {
+                    if (result == this.playerDisplay[i][1]) {
+                        output = (this.playerDisplay[i][0]);
+                        this.messageArray.push(['Win!', output]);//['win',output] into this.messageArray
+                    } else {
+                        output = (this.playerDisplay[i + 1][0]);
+                        this.messageArray.push(['Win!', output]);//['win',output] into this.messageArray
+                    }
                 }
+            } else if (result == "tie!") {//else if result equals "tie"
+                this.messageArray.push(["Tie!"]);//['tie!'] into this.messageArray
 
+                //    this.messageArray.push(['Win!', output]);//['win',output] into this.messageArray
+                //}else if (result == "tie!"){//else if result equals "tie"
+                //    this.messageArray.push(["Tie!"]);//['tie!'] into this.messageArray
+                //}else{//else
+                //    return;//return
+                //}
 
             }
-            //    this.messageArray.push(['Win!', output]);//['win',output] into this.messageArray
-            //}else if (result == "tie!"){//else if result equals "tie"
-            //    this.messageArray.push(["Tie!"]);//['tie!'] into this.messageArray
-            //}else{//else
-            //    return;//return
-            //}
-            //this.displayArray[2]=(this.messageArray);//push this.messageArray into this.displayArray
+            this.displayArray[2]=(this.messageArray);//push this.messageArray into this.displayArray
+
         }
+    };
 
-
-};
 //@purpose: update stats section
 //@params:
     //none
@@ -388,8 +431,8 @@ var displayController = {
         //  Display statistics data
 
         //  Get game finish condition data
-        var game_message = displayObject[3];
-        if(game_message == []){
+        var game_message = displayObject[2];
+        if(game_message.length == 0){
             return null;
         }
         else if(game_message[0] == 'tie'){
