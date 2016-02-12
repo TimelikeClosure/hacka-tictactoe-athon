@@ -182,22 +182,24 @@ var logicController = {
     //none
 //@global
     checkOutcome: function () {
-        var rowIndexes = [];
-        var columnIndexes = [];
-        var diagonalIndexes = [];
-        var rowCompare = null;
-        var columnCompare = null;
-        var diagonalCompare = null;
-        var result = null;
-        var matches = 0;
-        for (var i = 0; i < inputInterpreter.get_row_count(); i++) {
-            rowIndexes = inputInterpreter.get_row_indexes(i);
-            columnIndexes = inputInterpreter.get_column_indexes(i);
-            rowCompare = this.symbolStorageArray[rowIndexes[0]];
-            columnCompare = this.symbolStorageArray[columnIndexes[0]];
+        var rowIndexes = [];//store row array from inputInterpreter.get_row_indexes(i)
+        var columnIndexes = [];//store column array from inputInterpreter.get_column_indexes(i)
+        var diagonalIndexes = [];//store diagonal array from inputInterpreter.get_diagonal_indexes(i)
+        var rowCompare = null;// placeholder for this.symbolStorageArray[rowIndexes[0]]; symbol of the first element in row
+        var columnCompare = null;// placeholder for this.symbolStorageArray[columnIndexes[0]]; symbol of the first element in column
+        var diagonalCompare = null;// placeholder for this.symbolStorageArray[diagonalIndexes[0]]; symbol of the first element in diagonal
+        var result = null;//store result
+        var matches = 0;//increment match for every match
 
-            for (var j = 1; j < rowIndexes.length; j++) {
-                if (this.symbolStorageArray[rowIndexes[j]] == symbol1 || this.symbolStorageArray[rowIndexes[j]] == symbol2) {
+
+        for (var i = 0; i < inputInterpreter.get_row_count(); i++) {//for loop:
+            rowIndexes = inputInterpreter.get_row_indexes(i);//stores the array from inputInterpreter.get_row_indexes(i)
+            columnIndexes = inputInterpreter.get_column_indexes(i);//stores the array inputInterpreter.get_column_indexes(i)
+            rowCompare = this.symbolStorageArray[rowIndexes[0]];//symbol of the first element in row
+            columnCompare = this.symbolStorageArray[columnIndexes[0]];//symbol of the first element in column
+
+            for (var j = 1; j < rowIndexes.length; j++) { //for loop:
+                if (this.symbolStorageArray[rowIndexes[j]] == symbol1 || this.symbolStorageArray[rowIndexes[j]] == symbol2) {//
                     if (rowCompare == this.symbolStorageArray[rowIndexes[j]]) {
                         result = this.symbolStorageArray[rowIndexes[j]];
                         matches++;
