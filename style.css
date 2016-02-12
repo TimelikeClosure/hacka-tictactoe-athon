@@ -74,10 +74,24 @@ img{
     -webkit-transform: rotate(2deg); /* Chrome, Safari, Opera */
     transform: rotate(2deg);
     margin-bottom: 1%;
+    position: relative;
+    -webkit-animation: myplayer_area 15s infinite; /* Chrome, Safari, Opera */
+    animation: myplayer_area 15s infinite;
 }
+
+@-webkit-keyframes myplayer_area {
+
+    0%   {left: 0;}
+    25%  {left: 10%;}
+    50%  {left: 10%;}
+    75%  {left: -10%;}
+    100% {left: 0;}
+}
+
 ol >li{
     display: inline-block;
-    margin-left: 20%;
+    margin:5% 20%;
+
 }
 .current_player{
     color:red;
@@ -120,6 +134,9 @@ ol >li{
     -webkit-transform: rotate(-2deg); /* Chrome, Safari, Opera */
     transform: rotate(-2deg);
     margin-bottom: 1%;
+    position: relative;
+    -webkit-animation: myplayer_area 15s infinite; /* Chrome, Safari, Opera */
+    animation: myplayer_area 15s infinite;
 }
 /*Close stats section styling*/
 /*game reset button styling start here*/
@@ -138,6 +155,10 @@ ol >li{
 /*model styling start here, wining message*/
 .modal-content{
     background-color: black;
+}
+.text{
     color:red;
+    font-size: 200%;
+    font-weight: bolder;
     font-family:"Tempus Sans ITC";
 }
