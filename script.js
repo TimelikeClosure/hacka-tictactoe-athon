@@ -189,7 +189,6 @@ var logicController = {
         var columnCompare = null;// placeholder for this.symbolStorageArray[columnIndexes[0]]; symbol of the first element in column
         var diagonalCompare = null;// placeholder for this.symbolStorageArray[diagonalIndexes[0]]; symbol of the first element in diagonal
         var result = null;//store result
-        var matches = 0;//increment match for every match
 
 
         for (var i = 0; i < inputInterpreter.get_row_count(); i++) {//for loop:
@@ -202,47 +201,53 @@ var logicController = {
                 if (this.symbolStorageArray[rowIndexes[j]] == symbol1 || this.symbolStorageArray[rowIndexes[j]] == symbol2) {//
                     if (rowCompare == this.symbolStorageArray[rowIndexes[j]]) {
                         result = this.symbolStorageArray[rowIndexes[j]];
-                        matches++;
                     } else {
-                        return;
+                        result = null;
+                        break;
                     }
                 } else {
-                    return;
-                }
-                if (result != null) {
-                    return result;
-                }
-                for (var k = 1; k < columnIndexes.length; k++) {
-                    if (this.symbolStorageArray[columnIndexes[k]] == symbol1 || this.symbolStorageArray[columnIndexes[k]] == symbol2) {
-                        if (columnCompare == this.symbolStorageArray[columnIndexes[k]]) {
-                            result = this.symbolStorageArray[columnIndexes[j]];
-                            matches++;
-                        } else {
-                            return;
-                        }
-                    } else {
-                        return;
-                    }
-                }
-                if (result != null) {
-                    return result;
+                    result = null;
+                    break;
                 }
             }
-            for (var l = 0; l < 2; l++) {
-                diagonalIndexes = inputInterpreter.get_diagonal_indexes(l);
-                diagonalCompare = this.symbolStorageArray[diagonalIndexes[0]];
-                for (var m = 1; m < diagonalIndexes.length; m++) {
-                    if (this.symbolStorageArray[diagonalIndexes[m]] == symbol1 || this.symbolStorageArray[diagonalIndexes[m]] == symbol2) {
-                        if (diagonalCompare == this.symbolStorageArray[diagonalIndexes[m]]) {
-                            result = this.symbolStorageArray[diagonalIndexes[m]];
-                            matches++;
-                        } else {
-                            return;
-                        }
+            if (result != null) {
+                return result;
+            }
+            for (var k = 1; k < columnIndexes.length; k++) {
+                if (this.symbolStorageArray[columnIndexes[k]] == symbol1 || this.symbolStorageArray[columnIndexes[k]] == symbol2) {
+                    if (columnCompare == this.symbolStorageArray[columnIndexes[k]]) {
+                        result = this.symbolStorageArray[columnIndexes[j]];
                     } else {
-                        return;
+                        result = null;
+                        break;
                     }
+                } else {
+                    result = null;
+                    break;
                 }
+            }
+            if (result != null) {
+                return result;
+            }
+        }
+        for (var l = 0; l < 2; l++) {
+            diagonalIndexes = inputInterpreter.get_diagonal_indexes(l);
+            diagonalCompare = this.symbolStorageArray[diagonalIndexes[0]];
+            for (var m = 1; m < diagonalIndexes.length; m++) {
+                if (this.symbolStorageArray[diagonalIndexes[m]] == symbol1 || this.symbolStorageArray[diagonalIndexes[m]] == symbol2) {
+                    if (diagonalCompare == this.symbolStorageArray[diagonalIndexes[m]]) {
+                        result = this.symbolStorageArray[diagonalIndexes[m]];
+                    } else {
+                        result = null;
+                        break;
+                    }
+                } else {
+                    result = null;
+                    break;
+                }
+            }
+            if (result != null) {
+                return result;
             }
         }
     },
@@ -274,105 +279,6 @@ var logicController = {
 
         }
     };
-
-//@purpose: update stats section
-//@params:
-    //none
-//@returns:
-    //none
-//@global
-    //none
-
-
-
-
-
-
-//counter: 0, //keeps track of turns
-//players: 'x',
-//displayArray:[],//final output array
-//playerArray:[],//array that holds all player info
-//imgArray:[],//array that hold imgs/symbols
-//statArray:[],//array that hold stats
-//currentPlayerArray: [],//holds who's turn it is
-//elementClickedArray: ['','','','','','','','',''],//array that holds clicked elements; checks if element is already clicked
-//
-//click: function(clickPosition){
-//
-//    if (this.elementClickedArray[clickPosition] === ''){
-//        this.elementClickedArray[clickPosition] = clickPosition;
-//        this.switchPlayer();
-//        this.turnCounter();
-//        this.displayLogic();
-//    }else {
-//        this.displayLogic();
-//    }
-//
-//},
-//
-//assignSpace: function(clickPosition){
-//
-//},
-//
-//boardTiles: function(tileSymbol){
-//    this.imgArray.push(tileSymbol);
-//    this.displayArray.push(this.imgArray);
-//},
-//
-//switchPlayer: function() {
-//    var whosTurn = [];
-//    if (this.players == 'x'){
-//        this.players = 'o';
-//    }else {
-//        this.players = 'x';
-//    }
-//    whosTurn = this.players;
-//    this.currentPlayerArray = whosTurn;
-//    },
-//
-//turnCounter: function() {
-//    var countArray = [];
-//    this.counter++;//increment turn counter
-//    countArray = this.counter;
-//},
-
-
-//PlayerObject: function(number,symbol,turn){
-//    this.number = number;
-//    this.symbol = symbol;
-//    this.turn = turn;
-//},
-//
-//playerInfo: function(array) {
-//    var result = new this.PlayerObject(array[0],array[1],array[2]);
-//    var tileSymbol = array[1];
-//    this.playerArray.push(result);
-//    this.displayArray.push(this.playerArray);
-//},
-
-
-
-
-//function logicController(clickPosition) {
-//
-//}
-//@purpose: keep track of the number of turns taken
-//@params:
-    //clickPosition: the symbol of what was clicked
-//@return
-    //none
-//@global
-    //none
-//function turnCounter(array){
-//   if (array[current_turn] )
-//}
-
-//displayLogic: function(){
-//    return this.displayArray.slice();
-//
-//}
-
-
 //  Close logicController
 
 //  Begin displayController
