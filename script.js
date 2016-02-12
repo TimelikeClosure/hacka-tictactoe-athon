@@ -250,6 +250,10 @@ var logicController = {
                 return result;
             }
         }
+        if (this.counter == inputInterpreter.get_grid_count()) {
+            result = "tie!";
+            return result;
+        }
     },
 
         finalMessage: function (result) {//define finalMessage function
@@ -265,7 +269,7 @@ var logicController = {
                     }
                 }
             } else if (result == "tie!") {//else if result equals "tie"
-                this.messageArray.push(["Tie!"]);//['tie!'] into this.messageArray
+                this.messageArray.push("Tie!");//['tie!'] into this.messageArray
 
                 //    this.messageArray.push(['Win!', output]);//['win',output] into this.messageArray
                 //}else if (result == "tie!"){//else if result equals "tie"
@@ -343,7 +347,7 @@ var displayController = {
         if(game_message.length == 0){
             return null;
         }
-        else if(game_message[0] == 'tie'){
+        else if(game_message[0] == 'Tie!'){
             $("#messageModal .modal-body").fadeIn().html("Tie").addClass('text');
             $("#messageModal").modal('show');
         }
