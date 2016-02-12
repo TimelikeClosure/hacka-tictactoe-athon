@@ -431,25 +431,18 @@ var displayController = {
         //  Display statistics data
 
         //  Get game finish condition data
-        var game_message = displayObject[2];
-        if(game_message.length == 0){
+        var game_message = displayObject[2];        //assigning display array's 2 index to variable
+        if(game_message.length == 0){               //checking for condition if array length is equal to 0 then nothing to return
             return null;
         }
-        else if(game_message[0] == 'tie'){
+        else if(game_message[0] == 'tie'){      //checking for condition if array 0 index is equal to tie then show up in modal
             $("#messageModal .modal-body").fadeIn().html("Tie").addClass('text');
             $("#messageModal").modal('show');
         }
-        else{
-            $("#messageModal .modal-body").fadeIn().html("Win").addClass('text');
+        else{        //checking for condition if array 0 index is equal to win then show up in modal
+            $("#messageModal .modal-body").fadeIn().html("You won the game <img src='images/ttt_logo.png' style='width: 15%'>").addClass('text');
             $("#messageModal").modal('show');
         }
-        //  Display game finish condition
-        //function display_win(){         //this function displayed message when user won the game
-        //
-        //    $("#messageModal .modal-body").fadeIn().html(" ").addClass('text');
-        //    $("#messageModal").modal('show');
-        //    reset_button();
-        //}
 
     }
 
