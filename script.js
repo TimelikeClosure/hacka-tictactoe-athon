@@ -11,6 +11,7 @@ function cell_click($selector){
     var displayObject = logicController.click(clickPosition);
     console.log('displayObject : ', displayObject);
     displayController.updateGame(displayObject);
+
 }
 //  Close cell_click function
 
