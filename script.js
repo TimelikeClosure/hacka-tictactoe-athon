@@ -108,7 +108,7 @@ var logicController = {
             this.elementClickedArray[clickPosition] = clickPosition;//assign clickPosition to this.elementClickedArray[clickPosition]
             this.currentPosition = clickPosition;//assign clickPosition to this.currentPosition
             this.assignPlayer(clickPosition);//call this.assignPlayer() function
-            this.storeStats();//call this.storeStats() function
+           // this.storeStats();//call this.storeStats() function
             result = this.checkOutcome();
             this.finalMessage(result);//call this.finalMessage(result)
         } else {//else
@@ -143,8 +143,8 @@ var logicController = {
         }
         this.counter++;//increment counter [where do we return counter?]
         //this.playerArray.push(this.singlePlayerArray);
-        this.displayArray[0] = (this.playerArray);//push this.playerArray and this.symbolArray into this.displayArray
-        this.displayArray[1] = (this.symbolStorageArray);
+         this.displayArray[0] = (this.playerArray);//push this.playerArray and this.symbolArray into this.displayArray
+         this.displayArray[1] = (this.symbolStorageArray);
 
         this.playerDisplay = [];
         for (var i = 0; i < this.playerArray.length; i++) {//for loop: i is less than this.playerArray.length
@@ -169,11 +169,11 @@ var logicController = {
     //none
 //@global
     //none
-    storeStats: function () {
-//    x wins++
-//    o wins++
-        //this.displayArray.push(this.statsArray
-    },
+//    storeStats: function () {
+////    x wins++
+////    o wins++
+//        //this.displayArray.push(this.statsArray
+//    },
 
     //@purpose:
 //@params:
